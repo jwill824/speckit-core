@@ -1,0 +1,42 @@
+{
+  "name": "speckit-personal",
+  "description": "Personal spec-kit extension with enhanced agents, prompts, skills, session-logger hooks, and PR review workflow. Distributed via git submodule so downstream repos stay in sync automatically.",
+  "version": "1.0.0",
+  "author": "jwill824",
+  "repository": "https://github.com/jwill824/speckit-personal",
+  "category": "process",
+  "effect": "Read+Write",
+  "install": "bash <(curl -fsSL https://raw.githubusercontent.com/jwill824/speckit-personal/main/install.sh)",
+  "install_method": "submodule",
+  "submodule_path": ".speckit",
+  "symlinks": {
+    ".github/agents":    "../.speckit/.github/agents",
+    ".github/prompts":   "../.speckit/.github/prompts",
+    ".github/skills":    "../.speckit/.github/skills",
+    ".github/hooks":     "../.speckit/.github/hooks",
+    ".specify/templates":"../.speckit/.specify/templates",
+    ".specify/scripts":  "../.speckit/.specify/scripts"
+  },
+  "local_only": [
+    ".specify/memory/constitution.md",
+    ".specify/memory/stack.md",
+    ".specify/memory/issues-backlog.md",
+    ".github/copilot-instructions.md",
+    ".github/workflows/"
+  ],
+  "components": {
+    "agents": [
+      "speckit.specify", "speckit.clarify", "speckit.plan", "speckit.tasks",
+      "speckit.implement", "speckit.analyze", "speckit.checklist",
+      "speckit.constitution", "speckit.taskstoissues", "speckit.review",
+      "issue-triage"
+    ],
+    "prompts": [
+      "speckit.specify", "speckit.clarify", "speckit.plan", "speckit.tasks",
+      "speckit.implement", "speckit.analyze", "speckit.checklist",
+      "speckit.constitution", "speckit.taskstoissues", "issue-triage"
+    ],
+    "skills": ["conventional-commit", "context-map", "github-issues"],
+    "hooks": ["session-logger"]
+  }
+}
