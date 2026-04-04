@@ -1,42 +1,29 @@
 {
-  "name": "speckit-personal",
-  "description": "Personal spec-kit extension with enhanced agents, prompts, skills, session-logger hooks, and PR review workflow. Distributed via git submodule so downstream repos stay in sync automatically.",
+  "name": "speckit-core",
+  "description": "The spec-kit workflow layer — tool-agnostic templates, scripts, and memory stubs for spec-driven AI development. Distributed via git submodule so downstream repos stay in sync automatically.",
   "version": "1.0.0",
   "author": "jwill824",
-  "repository": "https://github.com/jwill824/speckit-personal",
+  "repository": "https://github.com/jwill824/speckit-core",
   "category": "process",
   "effect": "Read+Write",
-  "install": "bash <(curl -fsSL https://raw.githubusercontent.com/jwill824/speckit-personal/main/install.sh)",
+  "install": "bash <(curl -fsSL https://raw.githubusercontent.com/jwill824/speckit-core/main/install.sh)",
   "install_method": "submodule",
   "submodule_path": ".speckit",
   "symlinks": {
-    ".github/agents":    "../.speckit/.github/agents",
-    ".github/prompts":   "../.speckit/.github/prompts",
-    ".github/skills":    "../.speckit/.github/skills",
-    ".github/hooks":     "../.speckit/.github/hooks",
-    ".specify/templates":"../.speckit/.specify/templates",
-    ".specify/scripts":  "../.speckit/.specify/scripts"
+    ".specify/templates": "../.speckit/.specify/templates",
+    ".specify/scripts":   "../.speckit/.specify/scripts"
   },
   "local_only": [
     ".specify/memory/constitution.md",
-    ".specify/memory/stack.md",
-    ".specify/memory/issues-backlog.md",
-    ".github/copilot-instructions.md",
-    ".github/workflows/"
+    ".specify/memory/stack.md"
   ],
   "components": {
-    "agents": [
-      "speckit.specify", "speckit.clarify", "speckit.plan", "speckit.tasks",
-      "speckit.implement", "speckit.analyze", "speckit.checklist",
-      "speckit.constitution", "speckit.taskstoissues", "speckit.review",
-      "issue-triage"
+    "templates": [
+      "constitution", "stack", "spec", "plan", "tasks", "agent-file", "checklist"
     ],
-    "prompts": [
-      "speckit.specify", "speckit.clarify", "speckit.plan", "speckit.tasks",
-      "speckit.implement", "speckit.analyze", "speckit.checklist",
-      "speckit.constitution", "speckit.taskstoissues", "issue-triage"
-    ],
-    "skills": ["conventional-commit", "context-map", "github-issues"],
-    "hooks": ["session-logger"]
+    "scripts": [
+      "bootstrap", "check-prerequisites", "common",
+      "create-new-feature", "setup-plan", "update-agent-context"
+    ]
   }
 }

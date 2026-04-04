@@ -1,6 +1,6 @@
 # Community Extensions
 
-These community-built spec-kit extensions pair well with `speckit-personal`.
+These community-built spec-kit extensions pair well with `speckit-core`.
 
 ---
 
@@ -32,7 +32,7 @@ Shows a visual dashboard of your current spec-kit workflow progress. Displays wh
 
 **Repository**: [KhawarHabibKhan/spec-kit-doctor](https://github.com/KhawarHabibKhan/spec-kit-doctor)
 
-Diagnoses health issues in your spec-kit setup. Checks that all required agent files are present, that the constitution is initialized, that hooks are properly configured, and that templates are up to date. Run it after installing speckit-personal to verify everything is wired up correctly.
+Diagnoses health issues in your spec-kit setup. Checks that all required agent files are present, that the constitution is initialized, that hooks are properly configured, and that templates are up to date. Run it after installing speckit-core to verify everything is wired up correctly.
 
 ---
 
@@ -50,6 +50,6 @@ Generates an onboarding guide for new contributors based on the project constitu
 
 ## Installing Extensions
 
-Extensions can be installed by copying their `.github/` and `.specify/` files into your project, similar to how `speckit-personal` is installed via `install.sh`.
+Extensions can be installed by copying their `.github/` and `.specify/` files into your project, similar to how `speckit-core` is installed via `install.sh`.
 
 Check the [spec-kit repository](https://github.com/github/spec-kit) for an up-to-date list of community extensions.
