@@ -86,7 +86,7 @@ Consumer repos declare their AI tool and speckit preference in `.specify/project
 {
   "spec_workflow": true,
   "ai_tool": "copilot",
-  "ai_kit_path": ".copilot-kit"
+  "ai_kit_path": ".copilot"
 }
 ```
 

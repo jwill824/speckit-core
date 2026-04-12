@@ -45,7 +45,7 @@ See the upstream [Spec Kit README](https://github.com/github/spec-kit?tab=readme
 
 ### Via github-repo-factory
 
-Set `speckit_enabled: true` in your `repos.json` entry and let the factory bootstrap the submodule for you.
+Set `spec_workflow: true` and `ai_tool: "copilot"` (or your chosen tool) in your `repos.json` entry and let the factory bootstrap the submodule for you.
 
 ### Manual bootstrap
 
@@ -59,7 +59,8 @@ The installer:
 2. Links `.specify/templates/` and `.specify/scripts/` back to the submodule.
 3. Exposes bundled extensions and integration manifests inside the project's local `.specify/` tree.
 4. Seeds a local `.specify/extensions.yml` starter config if one does not already exist.
-5. Creates local constitution and stack stubs in `.specify/memory/`.
+5. Creates `.specify/project-tooling.json` with defaults (`spec_workflow: true, ai_tool: null`).
+6. Creates local constitution and stack stubs in `.specify/memory/`.
 
 ## AI-specific integrations
 
@@ -74,7 +75,8 @@ That means `speckit-core` should not vendor Copilot-, Claude-, or Codex-specific
 
 Today that boundary exists through:
 
-- `.specify/integrations/*.manifest.json` describes a selected integration
+- `.specify/integrations/<tool>/scripts/` contains integration adapter scripts (source content, committed)
+- `.specify/integrations/<tool>.manifest.json` is an installation receipt written by the linker (consumer state, gitignored)
 - `.specify/integration.json` records the active integration in a consuming project
 - `.specify/scripts/bash/update-agent-context.sh <agent>` is the shared update entry point
 - `.specify/scripts/bash/link-ai-integration.sh <integration> <kit-path>` links a tool-specific kit using its manifest
@@ -108,7 +110,7 @@ For a future `claude-kit`, the same pattern would apply: ship `.claude/...` asse
 |------|---------|
 | `.specify/templates/` | Spec, plan, tasks, constitution, stack, agent, and checklist templates |
 | `.specify/scripts/` | Shared bash workflow helpers |
-| `.specify/integrations/` | Integration manifests and helper scripts |
+| `.specify/integrations/` | Integration adapter scripts (source); installation receipts are gitignored |
 | `.specify/memory/` | Per-project constitution and stack stubs |
 
 ### Bundled extensions
