@@ -1,55 +1,41 @@
-# Community Extensions
+# Extensions
 
-These community-built spec-kit extensions pair well with `speckit-core`.
+`speckit-core` now bundles a small set of Spec Kit extensions directly in the repo so a consuming project can opt into richer workflow behavior without pulling each one separately.
 
----
+## Bundled with speckit-core
 
-## spec-kit-checkpoint
+The installer exposes these under `.specify/extensions/` and seeds a starter `.specify/extensions.yml` with the default hook wiring.
 
-**Repository**: [aaronrsun/spec-kit-checkpoint](https://github.com/aaronrsun/spec-kit-checkpoint)
+| Extension | Primary commands | Default role |
+|-----------|------------------|--------------|
+| `git` | `speckit.git.initialize`, `speckit.git.feature`, `speckit.git.validate`, `speckit.git.remote`, `speckit.git.commit` | Git bootstrap, feature branches, optional auto-commit hooks across the lifecycle |
+| `memorylint` | `speckit.memorylint.run` | Optional `before_constitution` guardrail for AGENTS vs constitution boundaries |
+| `cleanup` | `speckit.cleanup.run` | Optional post-implementation cleanup and tech-debt review |
+| `archive` | `speckit.archive.run` | Archive merged feature knowledge back into project memory |
+| `optimize` | `speckit.optimize.run`, `speckit.optimize.tokens`, `speckit.optimize.learn` | Constitution and governance token-efficiency analysis |
+| `sync` | `speckit.sync.analyze`, `speckit.sync.propose`, `speckit.sync.apply`, `speckit.sync.conflicts`, `speckit.sync.backfill` | Detect and resolve drift between specs and implementation |
 
-Save and restore spec-kit workflow state. Useful when you need to switch contexts mid-feature and resume later without losing your place in the spec-kit lifecycle. Creates checkpoint snapshots of your current spec, plan, and task state.
+## Default hook wiring
 
----
+The starter `.specify/extensions.yml` created by `install.sh` enables the current opinionated defaults:
 
-## spec-kit-cleanup
+- `before_constitution`: `memorylint`, `git.initialize`
+- `before_specify`: `git.feature`
+- `before_*` / `after_*` phase hooks: optional `git.commit`
+- `after_implement`: optional `sync.analyze`, `cleanup.run`, `git.commit`
 
-**Repository**: [dsrednicki/spec-kit-cleanup](https://github.com/dsrednicki/spec-kit-cleanup)
+Edit or remove those hooks per project - the file is created locally and is not overwritten if it already exists.
 
-Cleans up stale spec-kit artifacts: old specs that were never implemented, completed tasks that are still marked in-progress, and orphaned plan files. Keeps your `.specify/` directory tidy over time.
+## Community extensions worth pairing with speckit-core
 
----
+These are not bundled here, but they fit well with the repo's workflow:
 
-## spec-kit-status
+| Extension | Why pair it |
+|-----------|-------------|
+| [spec-kit-checkpoint](https://github.com/aaronrsun/spec-kit-checkpoint) | Break large implementation sessions into safer mid-stream checkpoints |
+| [spec-kit-status](https://github.com/KhawarHabibKhan/spec-kit-status) | Show where a feature currently sits in the lifecycle |
+| [spec-kit-doctor](https://github.com/KhawarHabibKhan/spec-kit-doctor) | Validate that a project's Spec Kit installation is wired correctly |
+| [spec-kit-iterate](https://github.com/imviancagrace/spec-kit-iterate) | Tighten fast iteration loops on an existing spec |
+| [spec-kit-onboard](https://github.com/dmux/spec-kit-onboard) | Generate contributor onboarding context from your project memory |
 
-**Repository**: [KhawarHabibKhan/spec-kit-status](https://github.com/KhawarHabibKhan/spec-kit-status)
-
-Shows a visual dashboard of your current spec-kit workflow progress. Displays which stage of the lifecycle you're in, what's complete, and what's next. Great for onboarding collaborators onto an in-progress feature.
-
----
-
-## spec-kit-doctor
-
-**Repository**: [KhawarHabibKhan/spec-kit-doctor](https://github.com/KhawarHabibKhan/spec-kit-doctor)
-
-Diagnoses health issues in your spec-kit setup. Checks that all required agent files are present, that the constitution is initialized, that hooks are properly configured, and that templates are up to date. Run it after installing speckit-core to verify everything is wired up correctly.
-
----
-
-## spec-kit-iterate
-
-A workflow extension that adds a `/speckit.iterate` command for rapid iteration on an existing spec. Useful when you need to make small, fast changes without going through the full lifecycle.
-
----
-
-## spec-kit-onboard
-
-Generates an onboarding guide for new contributors based on the project constitution and stack. Reads `.specify/memory/constitution.md` and `.specify/memory/stack.md` and produces a `docs/onboarding.md` tailored to the project.
-
----
-
-## Installing Extensions
-
-Extensions can be installed by copying their `.github/` and `.specify/` files into your project, similar to how `speckit-core` is installed via `install.sh`.
-
-Check the [spec-kit repository](https://github.com/github/spec-kit) for an up-to-date list of community extensions.
+For the full, current catalog, use the upstream [Spec Kit community extension index](https://github.com/github/spec-kit?tab=readme-ov-file#-community-extensions).

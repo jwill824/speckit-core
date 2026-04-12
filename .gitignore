@@ -8,3 +8,12 @@ logs/
 .DS_Store
 *.swp
 *.tmp
+.github/agents/
+.github/prompts/
+.specify/extensions/.cache/
+.specify/extensions/.registry
+.specify/init-options.json
+.specify/integration.json
+.specify/integrations/*.manifest.json
+.specify/memory/
+.vscode/
